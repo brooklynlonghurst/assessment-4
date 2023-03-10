@@ -27,8 +27,24 @@ module.exports = {
     },
 
     updateFortune: (req, res) => {
-        database.push(req.body)
-        res.status(200).send(database)
+        let update = req.query.update
+
+        let index
+
+        for(let i = 0; i < database.length; i++){
+            let newFortune = database[i].update
+
+            if(newFortune === update){
+                index = i
+            }
+        }
+
+        if(index === undefined){
+            res.status(400).send('could not update fortune')
+        } else {
+            res.status(200).send(database)
+        }
+
     },
 
     deleteFortune: (req, res) => {
@@ -41,13 +57,13 @@ module.exports = {
             if(currentFortune === remove){
                 index = i
             }
-
-            if(index === undefined){
-                res.status(200).send(database)
-            } else {
-                database.splice(index, 1)
-                res.status(200).send(database)
-            }
+           
+        } 
+        if(index === undefined){
+            res.status(200).send(database)
+        } else {
+            database.splice(index, 1)
+            res.status(200).send(database)
         }
     }
 }

@@ -26,8 +26,8 @@ fortuneBtn.addEventListener('click', getFortune)
 const createFortuneBtn = document.getElementById('createFortuneButton')
 const createFortuneBox = document.getElementById('fortuneInputBox')
 
-createFortuneBtn.addEventListener('click', () => {
-    // event.preventDefault()
+createFortuneBtn.addEventListener('click', (event) => {
+    event.preventDefault()
 
     const body = {
         create: createFortuneBox.value,
@@ -46,13 +46,12 @@ const updateFortuneBtn = document.getElementById('updateFortuneButton')
 updateFortuneBtn.addEventListener('click', (event) => {
     event.preventDefault()
 
-    const body = {
-        update: updateFortuneInput.value
-    }
-    axios.put('http://localhost:4000/api/fortune', body).then((result) => {
+       let update = updateFortuneInput.value
+
+    axios.put('http://localhost:4000/api/fortune?update=' + update).then((result) => {
         console.log(result.data)
     }).catch(() => {
-        console.log('uh oh something went wrong while updating your fortune :(')
+        //console.log('uh oh something went wrong while updating your fortune :(')
     })
 })
 

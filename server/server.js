@@ -15,7 +15,7 @@ app.get('/api/fortune', getFortune)
 
 app.post('/api/fortune', createFortune)
 
-app.put('/api/fortune', updateFortune)
+app.put('/api/fortune/:update', updateFortune)
 
 app.delete('/api/fortune/:remove', deleteFortune)
 

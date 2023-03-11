@@ -42,13 +42,14 @@ module.exports = {
         if(index === undefined){
             res.status(400).send('could not update fortune')
         } else {
+            database[index].createFortune 
             res.status(200).send(database)
         }
 
     },
 
     deleteFortune: (req, res) => {
-        let {remove} = req.params
+        let remove = req.params.remove
 
         let index 
 

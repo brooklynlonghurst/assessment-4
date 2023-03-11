@@ -45,13 +45,15 @@ const updateFortuneBtn = document.getElementById('updateFortuneButton')
 
 updateFortuneBtn.addEventListener('click', (event) => {
     event.preventDefault()
+    
+       const body2 = {
+           update: updateFortuneInput.value
+    } 
 
-       let update = updateFortuneInput.value
-
-    axios.put('http://localhost:4000/api/fortune?update=' + update).then((result) => {
-        console.log(result.data)
+    axios.put('http://localhost:4000/api/fortune/update=' + body2).then((result) => {
+            console.log(result.data)
     }).catch(() => {
-        //console.log('uh oh something went wrong while updating your fortune :(')
+        console.log('uh oh something went wrong while updating your fortune :(')
     })
 })
 
@@ -64,7 +66,7 @@ removeFortuneBtn.addEventListener('click', (event) => {
 
     let remove = removeFortuneInput.value
 
-    axios.delete('http://localhost:4000/api/fortune/' + remove).then((result) => {
+    axios.delete('http://localhost:4000/api/fortune/remove=' + remove).then((result) => {
         console.log(result.data)
     }).catch(() => {
         console.log('oh dang, looks like you\'re stuck with this fortune forever')

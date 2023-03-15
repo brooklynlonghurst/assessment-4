@@ -65,10 +65,10 @@ module.exports = {
     },
 
     deleteFortune: (req, res) => {
-        let remove = req.params.remove
-        let index = req.query.index
-
-        database[index] = remove
+        // let remove = req.params.remove
+        let index = req.params.index
+       
+        database.splice(index, 1) 
         res.status(200).send(database)
     }
     //     let index 

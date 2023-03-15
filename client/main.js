@@ -56,14 +56,15 @@ updateFortuneBtn.addEventListener('click', (event) => {
 })
 
 
-const removeFortuneInput = document.getElementById('removeFortuneInputBox')
+// const removeFortuneInput = document.getElementById('removeFortuneInputBox')
 const removeFortuneBtn = document.getElementById('removeFortuneButton')
 const removeFortuneIndex = document.getElementById('removeIndexInputBox')
 
 removeFortuneBtn.addEventListener('click', (event) => {
     event.preventDefault()
+    //removeFortuneInput.value +
 
-    axios.delete('http://localhost:4000/api/fortune/remove=' + removeFortuneInput.value + '&index=' + removeFortuneIndex.value).then((result) => {
+    axios.delete('http://localhost:4000/api/fortune/remove=' +  '&index=' + removeFortuneIndex.value).then((result) => {
         console.log(result.data)
     }).catch(() => {
         console.log('oh dang, looks like you\'re stuck with this fortune forever')

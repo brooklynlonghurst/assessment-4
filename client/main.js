@@ -42,15 +42,13 @@ createFortuneBtn.addEventListener('click', (event) => {
 
 const updateFortuneInput = document.getElementById('updateFortuneInputBox')
 const updateFortuneBtn = document.getElementById('updateFortuneButton')
+const updateFortuneIndex = document.getElementById('updateIndexInputBox')
+
 
 updateFortuneBtn.addEventListener('click', (event) => {
     event.preventDefault()
-    
-       const body2 = {
-           update: updateFortuneInput.value
-    } 
 
-    axios.put('http://localhost:4000/api/fortune/update=' + body2).then((result) => {
+    axios.put('http://localhost:4000/api/fortune?update=' + updateFortuneInput.value + '&index=' + updateFortuneIndex.value).then((result) => {
             console.log(result.data)
     }).catch(() => {
         console.log('uh oh something went wrong while updating your fortune :(')
@@ -60,13 +58,12 @@ updateFortuneBtn.addEventListener('click', (event) => {
 
 const removeFortuneInput = document.getElementById('removeFortuneInputBox')
 const removeFortuneBtn = document.getElementById('removeFortuneButton')
+const removeFortuneIndex = document.getElementById('removeIndexInputBox')
 
 removeFortuneBtn.addEventListener('click', (event) => {
     event.preventDefault()
 
-    let remove = removeFortuneInput.value
-
-    axios.delete('http://localhost:4000/api/fortune/remove=' + remove).then((result) => {
+    axios.delete('http://localhost:4000/api/fortune/remove=' + removeFortuneInput.value + '&index=' + removeFortuneIndex.value).then((result) => {
         console.log(result.data)
     }).catch(() => {
         console.log('oh dang, looks like you\'re stuck with this fortune forever')

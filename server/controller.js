@@ -24,20 +24,36 @@ module.exports = {
     createFortune: (req, res) => {
         database.push(req.body)
         res.status(200).send(database)
+        console.log(database)
     },
 
     updateFortune: (req, res) => {
-        let update = req.query.update
+        let update = req.query.update //grabbing info from the front 
+        let index = req.query.index //grabbing index from the front 
+        
 
-        let index
+        //from the front end i see an entry at index[0] that i need to fix. 
+        //under update fortune i need to select what input index i would like to change
+        //then write in the input box what i want it to be
 
-        for(let i = 0; i < database.length; i++){
-            let newFortune = database[i].update
+        //in my code, i need to find the index of create input that needs to be changed i.e. index[0]
+        //update with new one fortune
+       
+        //if the index passed in from the front equals what is in the database
+            //then push what they changed?
+        database[index].create = update
+        res.status(200).send(database)
+        return 
+        // let index 
+
+        // for(let i = 0; i < database.length; i++){
+            console.log(database[i])
+            let newFortune = database[i].create
 
             if(newFortune === update){
                 index = i
             }
-        }
+        // }
 
         if(index === undefined){
             res.status(400).send('could not update fortune')
@@ -50,21 +66,25 @@ module.exports = {
 
     deleteFortune: (req, res) => {
         let remove = req.params.remove
+        let index = req.query.index
 
-        let index 
-
-        for(let i = 0; i , database.length; i++){
-            let currentFortune = database[i].remove
-            if(currentFortune === remove){
-                index = i
-            }
-           
-        } 
-        if(index === undefined){
-            res.status(200).send(database)
-        } else {
-            database.splice(index, 1)
-            res.status(200).send(database)
-        }
+        database[index] = remove
+        res.status(200).send(database)
     }
+    //     let index 
+
+    //     for(let i = 0; i < database.length; i++){
+    //         let currentFortune = database[i].remove
+    //         if(currentFortune === remove){
+    //             index = i
+    //         }
+           
+    //     } 
+    //     if(index === undefined){
+    //         res.status(200).send(database)
+    //     } else {
+    //         database.splice(index, 1)
+    //         res.status(200).send(database)
+    //     }
+    // 
 }
